@@ -21,11 +21,17 @@ public class Controller {
 			int start = Integer.parseInt(side.getValue().split("-")[0]);
 			int end = Integer.parseInt(side.getValue().split("-")[1]);
 			
-			for (int i = start; i <= end && i <= 359; i++) {
-				if (i == 359) {
-					i = 0;
+			if (start < end) {
+				for (int i = start; i <= end && i <= 359; i++) {
+					compass.setDegree(i, side.getKey());
 				}
-				compass.setDegree(i, side.getKey());
+			} else {
+				for (int i = start; i <= 359; i++) {
+					compass.setDegree(i, side.getKey());
+				}
+				for (int i = 0; i <= end; i++) {
+					compass.setDegree(i, side.getKey());
+				}
 			}
 		});;
 	}
